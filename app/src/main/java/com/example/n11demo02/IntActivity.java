@@ -1,7 +1,5 @@
 package com.example.n11demo02;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,16 +9,24 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
+/**
+ * The Int activity
+ * <p>
+ *     Activity to demonstrate writing/reading text file from internal memory
+ * </p>
+ *
+ * @author		Levy Albert albert.school2015@gmail.com
+ * @version     2.0
+ * @since		14/6/2023
+ */
 public class IntActivity extends MasterActivity {
     private EditText eT;
     private TextView tV;
-    private final String FILENAME = "test.txt";
+    private final String FILENAME = "inttest.txt";
     private String strwr;
 
     @Override
@@ -31,6 +37,11 @@ public class IntActivity extends MasterActivity {
         initAll();
     }
 
+    /**
+     * initAll method
+     * <p> Init views & check if file exist in internal memory
+     * </p>
+     */
     private void initAll() {
         eT=(EditText)findViewById(R.id.eT);
         tV=(TextView)findViewById(R.id.tV);
@@ -42,6 +53,13 @@ public class IntActivity extends MasterActivity {
         }
     }
 
+    /**
+     * write method
+     * <p> Writing the text input to the text file
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
     public void write(View view) {
         strwr=eT.getText().toString();
         try {
@@ -55,6 +73,13 @@ public class IntActivity extends MasterActivity {
         }
     }
 
+    /**
+     * reset method
+     * <p> Reset & clear the text file
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
     public void reset(View view) {
         try {
             FileOutputStream fOS = openFileOutput(FILENAME,MODE_PRIVATE);
@@ -71,6 +96,13 @@ public class IntActivity extends MasterActivity {
         tV.setText("");
     }
 
+    /**
+     * read method
+     * <p> Reading the text from the text file & display
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
     public void read(View view) {
         try {
             FileInputStream fIS= openFileInput(FILENAME);

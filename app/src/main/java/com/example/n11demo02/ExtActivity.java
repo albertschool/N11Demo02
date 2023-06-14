@@ -1,9 +1,9 @@
 package com.example.n11demo02;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,16 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-
+/**
+ * The Ext activity
+ * <p>
+ *     Activity to demonstrate writing/reading text file from external memory(SD-card)
+ * </p>
+ *
+ * @author		Levy Albert albert.school2015@gmail.com
+ * @version     2.0
+ * @since		14/6/2023
+ */
 public class ExtActivity extends MasterActivity {
     private static final int REQUEST_CODE_PERMISSION = 1;
     private EditText eT;
@@ -38,6 +42,12 @@ public class ExtActivity extends MasterActivity {
         initAll();
     }
 
+    /**
+     * initAll method
+     * <p> Init views, check if permission WRITE_EXTERNAL_STORAGE granted & check if file exist in
+     * external memory
+     * </p>
+     */
     private void initAll() {
         eT=(EditText)findViewById(R.id.eT);
         tV=(TextView)findViewById(R.id.tV);
@@ -49,7 +59,23 @@ public class ExtActivity extends MasterActivity {
         } else {
             Toast.makeText(this, "Permission to access external storage granted", Toast.LENGTH_LONG).show();
         }
+
+        if (isFilePresent(this,FILENAME)) {
+            read(null);
+        } else {
+            reset(null);
+        }
     }
+
+    /**
+     * onRequestPermissionsResult method
+     * <p> Result method of request permission accessing external memory
+     * </p>
+     *
+     * @param requestCode the int request code of the permission asked
+     * @param permissions String array of permissions
+     * @param grantResults int array of grant results
+     */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -64,6 +90,33 @@ public class ExtActivity extends MasterActivity {
         }
     }
 
+    /**
+     * isFilePresent method
+     * <p> Checking if fileName exist in the external memory
+     * </p>
+     *
+     * @param context the context object
+     * @param fileName the file name to be checked
+     * @return true if the file is present
+     */
+    public boolean isFilePresent(Context context, String fileName) {
+        File dirFiles = context.getFilesDir();
+        File[] filesArray = dirFiles.listFiles();
+        for (File file : filesArray) {
+            if (file.getName().equals(fileName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * write method
+     * <p> Writing the text input to the text file
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
     public void write(View view) {
         strwr=eT.getText().toString();
         try {
@@ -80,6 +133,13 @@ public class ExtActivity extends MasterActivity {
         }
     }
 
+    /**
+     * reset method
+     * <p> Reset & clear the text file
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
     public void reset(View view) {
         try {
             File externalDir = Environment.getExternalStorageDirectory();
@@ -97,6 +157,14 @@ public class ExtActivity extends MasterActivity {
         tV.setText("");
     }
 
+    /**
+     * read method
+     * <p> Reading the text from the text file & display
+     * </p>
+     *
+     * @param view the view that triggered the method
+     */
+
     public void read(View view) {
         try {
             File externalDir = Environment.getExternalStorageDirectory();
@@ -104,7 +172,6 @@ public class ExtActivity extends MasterActivity {
             file.getParentFile().mkdirs();
             FileReader reader = new FileReader(file);
             BufferedReader bR = new BufferedReader(reader);
-
             StringBuilder sB = new StringBuilder();
             String line = bR.readLine();
             while (line != null) {

@@ -10,6 +10,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+/**
+ * The Master activity
+ * <p>
+ *     Master activity to demonstrate inheriting from Master activity (menu)
+ * </p>
+ *
+ * @author		Levy Albert albert.school2015@gmail.com
+ * @version     2.0
+ * @since		14/6/2023
+ */
+
 public class MasterActivity extends AppCompatActivity {
     private Intent intent;
     @Override
