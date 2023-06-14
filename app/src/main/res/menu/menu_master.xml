@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/iF"
+        android:orderInCategory="100"
+        android:title="Internal Files" />
+    <item
+        android:id="@+id/rF"
+        android:orderInCategory="200"
+        android:title="raw file" />
+    <item
+        android:id="@+id/eF"
+        android:orderInCategory="300"
+        android:title="External File" />
+</menu>
