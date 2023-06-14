@@ -27,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:autoSizeTextType="uniform"
-            android:text="Read/Write with internal file" />
+            android:gravity="center"
+            android:text="Read/Write to internal file" />
 
         <Space
             android:layout_width="match_parent"
