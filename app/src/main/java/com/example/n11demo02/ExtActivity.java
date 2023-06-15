@@ -145,9 +145,9 @@ public class ExtActivity extends MasterActivity {
      * @param view the view that triggered the method
      */
     public void write(View view) {
-        strwr=eT.getText().toString();
         if (extExist && permExist) {
             try {
+                strwr=eT.getText().toString();
                 File externalDir = Environment.getExternalStorageDirectory();
                 File file = new File(externalDir, FILENAME);
                 file.getParentFile().mkdirs();
@@ -172,8 +172,8 @@ public class ExtActivity extends MasterActivity {
      * @return true if the file is present
      */
     public boolean isFilePresent(Context context, String fileName) {
-        File dirFiles = context.getFilesDir();
-        File[] filesArray = dirFiles.listFiles();
+        File externalDir = Environment.getExternalStorageDirectory();
+        File[] filesArray = externalDir.listFiles();
         for (File file : filesArray) {
             if (file.getName().equals(fileName)) {
                 return true;
