@@ -72,27 +72,22 @@ public class RawActivity extends MasterActivity {
      */
     public void read(View view) {
         if (fileExists) {
-            InputStream iS = this.getResources().openRawResource(resourceId);
-            InputStreamReader iSR = new InputStreamReader(iS);
-            BufferedReader bR = new BufferedReader(iSR);
-            StringBuilder sB = new StringBuilder();
             try {
+                InputStream iS = this.getResources().openRawResource(resourceId);
+                InputStreamReader iSR = new InputStreamReader(iS);
+                BufferedReader bR = new BufferedReader(iSR);
+                StringBuilder sB = new StringBuilder();
                 String line = bR.readLine();
                 while (line != null) {
                     sB.append(line+'\n');
                     line = bR.readLine();
                 }
+                bR.close();
+                iSR.close();
+                iS.close();
                 tV.setText(sB.toString());
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    bR.close();
-                    iSR.close();
-                    iS.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         } else {
             Toast.makeText(this, "raw file doesn't exist", Toast.LENGTH_LONG).show();
