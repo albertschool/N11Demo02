@@ -114,10 +114,10 @@ public class IntActivity extends MasterActivity {
                 sB.append(line+'\n');
                 line = bR.readLine();
             }
-            tV.setText(sB.toString());
             bR.close();
             iSR.close();
             fIS.close();
+            tV.setText(sB.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

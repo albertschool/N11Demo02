@@ -236,8 +236,9 @@ public class ExtActivity extends MasterActivity {
                         sB.append(line+'\n');
                         line = bR.readLine();
                     }
-                    tV.setText(sB.toString());
                     bR.close();
+                    reader.close();
+                    tV.setText(sB.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Failed to read text file", Toast.LENGTH_SHORT).show();
