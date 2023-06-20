@@ -63,11 +63,13 @@ public class IntActivity extends MasterActivity {
     public void write(View view) {
         strwr=eT.getText().toString();
         try {
-            FileOutputStream fos = openFileOutput(FILENAME,MODE_PRIVATE);
-            OutputStreamWriter osw = new OutputStreamWriter(fos);
-            BufferedWriter bw = new BufferedWriter(osw);
-            bw.write(strwr);
-            bw.close();
+            FileOutputStream fOS = openFileOutput(FILENAME,MODE_PRIVATE);
+            OutputStreamWriter oSW = new OutputStreamWriter(fOS);
+            BufferedWriter bW = new BufferedWriter(oSW);
+            bW.write(strwr);
+            bW.close();
+            oSW.close();
+            fOS.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
