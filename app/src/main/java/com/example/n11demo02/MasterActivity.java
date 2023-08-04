@@ -38,19 +38,16 @@ public class MasterActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.iF) {
-            intent = new Intent(MasterActivity.this, IntActivity.class);
+            intent = new Intent(getApplicationContext(), IntActivity.class);
             startActivity(intent);
-            return true;
         }
-        if (id == R.id.rF) {
-            intent = new Intent(MasterActivity.this, RawActivity.class);
+        else if (id == R.id.rF) {
+            intent = new Intent(getApplicationContext(), RawActivity.class);
             startActivity(intent);
-            return true;
         }
-        if (id == R.id.eF) {
-            intent = new Intent(MasterActivity.this, ExtActivity.class);
+        else if (id == R.id.eF) {
+            intent = new Intent(getApplicationContext(), ExtActivity.class);
             startActivity(intent);
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
